@@ -75,15 +75,11 @@ const mainPage = () => {
   $("main").html(html);
 };
 
-
 function startQuizButton() {
-  $('main').on('click', '#start-btn',(event){
-    console.log('start')
-    
-  })
-  
+  $("main").on("click", "#start-btn", (event) => {
+    console.log("start");
+  });
 }
-
 
 /**
  *
