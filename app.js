@@ -5,14 +5,40 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: "What color is broccoli?",
-      answers: ["red", "orange", "pink", "green"],
-      correctAnswer: "green",
+      question: "What is Limewire?",
+      answers: [
+        "Video game",
+        "Social Media Platform",
+        "Smoothie Shop",
+        "Torrent manager for downloading media",
+      ],
+      correctAnswer: "Torrent manager for downloading media",
     },
     {
-      question: "What is the current year?",
-      answers: ["1970", "2015", "2019", "2005"],
-      correctAnswer: "2019",
+      question:
+        "Which of these video game consoles was not around in the 2000s?",
+      answers: ["PS2", "Wii", "Nintendo Switch", "Xbox 360"],
+      correctAnswer: "Nintendo Switch",
+    },
+    {
+      question: "What were shoes with wheels called in the 2000s?",
+      answers: ["Roller Skates", "Wheelies", "Heelys", "Wheel Kicks"],
+      correctAnswer: "Heelys",
+    },
+    {
+      question: "What was the most popular vampire movie in the 2000s?",
+      answers: ["Vampire in Brooklyn", "Little Vampire", "Twilight", "Blade"],
+      correctAnswer: "Twilight",
+    },
+    {
+      question: "What does YOLO mean?",
+      answers: [
+        "You Only Love Once",
+        "You Only Live Once",
+        "You Only Learn Once",
+        "Young Open-minded Learners Outreach",
+      ],
+      correctAnswer: "You Only Live Once",
     },
   ],
   quizStarted: false,

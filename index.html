@@ -17,15 +17,27 @@
       <h1>The Millennial Quiz</h1>
     </header>
     <main>
-      <p>
-        Welcome to the Millennial Quiz! This quiz was created to test how
-        Millennial you are. There are five mulitple choice question to answer.
-        Each question is worth 20 points.
-      </p>
-      <p>
-        If you are up to the challenge, click on the start quiz button to begin.
-      </p>
-      <button>Start Quiz</button>
+      <div class="container">
+        <div id="main-page-container">
+          <p>
+            Welcome to the Millennial Quiz! This quiz was created to test how
+            Millennial you are. There are five mulitple choice question to
+            answer. Each question is worth 20 points.
+          </p>
+          <p>
+            If you are up to the challenge, click on the start quiz button to
+            begin.
+          </p>
+        <div class="controls">
+          <button id="start-btn" class="start-btn btn">Start Quiz</button>
+          <button id="next-btn" class="next-btn btn">Next</button>
+          <button id="finsh-btn" class="finish-btn btn">Finish quiz</button>
+        </div>
+        <div id="question-container" class="hide">
+          <div id="question">Question</div>
+
+        </div>
+      </div>
     </main>
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.js"
