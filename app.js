@@ -10,7 +10,7 @@ function html() {
 
 }
 
-function mainPage() => {
+const mainPage = () => {
   html = `
     <div class="container">
       <div id="main-page-container">
