@@ -1,6 +1,42 @@
 /**
  * Example store structure
  */
+
+function html() {
+  $('main').html(html)
+
+
+
+
+}
+
+function mainPage() => {
+  html = `
+    <div class="container">
+      <div id="main-page-container">
+        <p>
+          Welcome to the Millennial Quiz! This quiz was created to test how
+          Millennial you are. There are five mulitple choice question to
+          answer. Each question is worth 20 points.
+          </p>
+        <p>
+          If you are up to the challenge, click on the start quiz button to
+          begin.
+          </p>
+        <div class="controls">
+          <button id="start-btn" class="start-btn btn">Start Quiz</button>
+          
+        </div>
+
+      </div>
+  </div>
+  `
+  $('main').html(html);
+  
+}
+
+
+
 const store = {
   // 5 or more questions are required
   questions: [
@@ -46,6 +82,10 @@ const store = {
   score: 0,
 };
 
+
+
+}
+
 /**
  *
  * Technical requirements:
@@ -63,14 +103,7 @@ const store = {
 
 /********** TEMPLATE GENERATION FUNCTIONS **********/
 
-const HomePage = (data) => {
-  return `
-    <header>
-      <h1>${data.quizName}</h1>
-    </header>
-    <main></main>
-  `;
-};
+
 
 // These functions return HTML templates
 
@@ -81,3 +114,6 @@ const HomePage = (data) => {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+$(
+  mainPage(),
+)
