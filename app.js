@@ -107,4 +107,4 @@ function startQuizButton() {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(mainPage(), $startQuizButton());
+$(mainPage(), startQuizButton());
