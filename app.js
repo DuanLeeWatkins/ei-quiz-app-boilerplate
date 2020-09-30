@@ -75,12 +75,32 @@ const mainPage = () => {
   $("main").html(html);
 };
 
+const QuestionAndAnwers = () => {
+  html = `
+    <div class="container">
+      <p>Question insert here</p>
+      <form id="js-quiz-question-anwser-form">
+        <label for= "answer1">Answer 1</label>
+        <input type="radio" name=Answers id="answer1" value="answer1"><br>
+        <label for= "answer2">Answer 2</label>
+        <input type="radio" name=Answers id="answer2" value="answer2"><br>
+        <label for= "answer3">Answer 3</label>
+        <input type="radio" name=Answers id="answer3" value="answer3"><br>
+        <label for= "answer4">Answer 4</label>
+        <input type="radio" name=Answers id="answer4" value="answer4"><br> 
+      </form>
+    </div>`;
+};
+
 function startQuizButton() {
   $("main").on("click", "#start-btn", (event) => {
     console.log("start");
   });
 }
 
+function handleQuestionNumber() {}
+
+function renderQuestionAndAnswers() {}
 /**
  *
  * Technical requirements:
