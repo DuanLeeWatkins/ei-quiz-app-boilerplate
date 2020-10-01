@@ -75,7 +75,7 @@ const mainPage = () => {
   $("main").html(html);
 };
 
-const questionAndAnswers = () => {
+const renderQuestion = () => {
   let questions = store.questions[store.questionNumber];
   html = `
     <div class="container">
@@ -99,12 +99,13 @@ const questionAndAnswers = () => {
 };
 
 function startQuizButton() {
-  $("main").on("click", "#start-btn", (event) => {});
+  $("main").on("click", "#start-btn", (event) => {
+    renderQuestion();
+  });
 }
 
 function handleQuestionNumber() {}
 
-function renderQuestionAndAnswers() {}
 /**
  *
  * Technical requirements:
@@ -131,4 +132,4 @@ function renderQuestionAndAnswers() {}
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(mainPage(), startQuizButton(), questionAndAnswers());
+$(mainPage(), startQuizButton());
