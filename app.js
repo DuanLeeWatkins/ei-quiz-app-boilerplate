@@ -75,10 +75,11 @@ const mainPage = () => {
   $("main").html(html);
 };
 
-const QuestionAndAnwers = () => {
+const questionAndAnswers = () => {
+  let questions = store.questions[store.questionNumber];
   html = `
     <div class="container">
-      <p>${questions.question[0]}</p>
+      <p>${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
           <label for= "answer[0]">${questions.answers[0]}</label>
@@ -98,9 +99,7 @@ const QuestionAndAnwers = () => {
 };
 
 function startQuizButton() {
-  $("main").on("click", "#start-btn", (event) => {
-    console.log("start");
-  });
+  $("main").on("click", "#start-btn", (event) => {});
 }
 
 function handleQuestionNumber() {}
@@ -132,4 +131,4 @@ function renderQuestionAndAnswers() {}
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(mainPage(), startQuizButton());
+$(mainPage(), startQuizButton(), questionAndAnswers());
