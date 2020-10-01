@@ -78,18 +78,23 @@ const mainPage = () => {
 const QuestionAndAnwers = () => {
   html = `
     <div class="container">
-      <p>Question insert here</p>
-      <form id="js-quiz-question-anwser-form">
-        <label for= "answer1">Answer 1</label>
-        <input type="radio" name=Answers id="answer1" value="answer1"><br>
-        <label for= "answer2">Answer 2</label>
-        <input type="radio" name=Answers id="answer2" value="answer2"><br>
-        <label for= "answer3">Answer 3</label>
-        <input type="radio" name=Answers id="answer3" value="answer3"><br>
-        <label for= "answer4">Answer 4</label>
-        <input type="radio" name=Answers id="answer4" value="answer4"><br> 
-      </form>
+      <p>${questions.question[0]}</p>
+      <div class="question-answers-container">
+        <form id="js-quiz-question-anwser-form">
+          <label for= "answer[0]">${questions.answers[0]}</label>
+          <input type="radio" name=Answers id="answer1" value="${questions.answers[0]}"><br>
+          <label for= "answer[1]">${questions.answers[1]}</label>
+          <input type="radio" name=Answers id="answer2" value="${questions.answers[1]}"><br>
+          <label for= "answer[2]">${questions.answers[2]}</label>
+          <input type="radio" name=Answers id="answer3" value="${questions.answers[2]}"><br>
+          <label for= "answer[3]">${questions.answers[3]}</label>
+          <input type="radio" name=Answers id="answer4" value="${questions.answers[3]}"><br>
+          <button type="submit">Submit</button>
+       
+        </form>
+      </div>
     </div>`;
+  $("main").html(html);
 };
 
 function startQuizButton() {
