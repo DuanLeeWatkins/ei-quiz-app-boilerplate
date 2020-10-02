@@ -47,11 +47,11 @@ const store = {
   score: 0,
 };
 
-function html() {
+function render(html) {
   $("main").html(html);
 }
 
-const mainPage = () => {
+const renderMainPage = () => {
   html = `
     <div class="container">
       <div id="main-page-container">
@@ -59,23 +59,26 @@ const mainPage = () => {
           Welcome to the Millennial Quiz! This quiz was created to test how
           Millennial you are. There are five mulitple choice question to
           answer. Each question is worth 20 points.
-          </p>
+        </p>
         <p>
           If you are up to the challenge, click on the start quiz button to
           begin.
           </p>
         <div class="controls">
           <button id="start-btn" class="start-btn btn">Start Quiz</button>
-          
         </div>
 
       </div>
   </div>
   `;
-  $("main").html(html);
+
+  render(html);
+  $("main").on("click", "#start-btn", (event) => {
+    renderQuestionPage();
+  });
 };
 
-const renderQuestion = () => {
+const renderQuestionPage = () => {
   let questions = store.questions[store.questionNumber];
   html = `
     <div class="container">
@@ -91,17 +94,28 @@ const renderQuestion = () => {
           <label for= "answer[3]">${questions.answers[3]}</label>
           <input type="radio" name=Answers id="answer4" value="${questions.answers[3]}"><br>
           <button type="submit">Submit</button>
-       
+          <button id="btn-next">Next</button>
+          <button id="btn-finish">Finish</button>
         </form>
       </div>
     </div>`;
-  $("main").html(html);
+
+  render(html);
+  $("#btn-next, #btn-finish").hide();
+  $("#js-quiz-question-anwser-form").submit((event) => {
+    event.preventDefault();
+
+    // - Checking if the answer is correct
+    // - Hiding the Submit button
+    // - Showing the Next button (if not on last question)
+    // - Showing the Finish button (if on last question)
+
+    console.log("Form has been submitted!");
+  });
 };
 
-function startQuizButton() {
-  $("main").on("click", "#start-btn", (event) => {
-    renderQuestion();
-  });
+function startQuiz() {
+  jQuery("#btn-next").addClass("hide");
 }
 
 function handleQuestionNumber() {}
@@ -132,4 +146,4 @@ function handleQuestionNumber() {}
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(mainPage(), startQuizButton());
+$(renderMainPage);
