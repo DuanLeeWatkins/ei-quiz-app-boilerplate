@@ -80,6 +80,7 @@ const renderMainPage = () => {
 
 const renderQuestionPage = () => {
   let questions = store.questions[store.questionNumber];
+
   html = `
     <div class="container">
       <p>${questions.question}</p>
