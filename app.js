@@ -130,7 +130,6 @@ const renderQuestionPage = () => {
       // - [ ] Display a success message
       // - [ ] Update the user score (+20)
       alert("Correct answer!");
-      score.store += 20;
     } else {
       // - [ ] Display wrong message with correct answer
       alert("Wrong answer");
@@ -138,7 +137,7 @@ const renderQuestionPage = () => {
     // - We need an if statement to compare the correct answer in the object
     //   to the user's input
 
-    console.log("Form has been submitted!");
+    store.score += 20;
   });
 };
 
@@ -174,4 +173,4 @@ function handleQuestionNumber() {}
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(renderMainPage);
+$(renderMainPage, renderQuestionPage);
