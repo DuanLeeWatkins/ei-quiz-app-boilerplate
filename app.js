@@ -83,20 +83,31 @@ const renderQuestionPage = () => {
 
   html = `
     <div class="container">
+      <p id="score">Score:0</p>
       <p>${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
-          <label for= "answer[0]">${questions.answers[0]}</label>
-          <input type="radio" name=Answers id="answer1" value="${questions.answers[0]}"><br>
-          <label for= "answer[1]">${questions.answers[1]}</label>
-          <input type="radio" name=Answers id="answer2" value="${questions.answers[1]}"><br>
-          <label for= "answer[2]">${questions.answers[2]}</label>
-          <input type="radio" name=Answers id="answer3" value="${questions.answers[2]}"><br>
-          <label for= "answer[3]">${questions.answers[3]}</label>
-          <input type="radio" name=Answers id="answer4" value="${questions.answers[3]}"><br>
-          <button type="submit">Submit</button>
-          <button id="btn-next">Next</button>
-          <button id="btn-finish">Finish</button>
+          <p>
+            <label for="answer0">${questions.answers[0]}</label>
+            <input type="radio" name="answers" id="answer0" value="${questions.answers[0]}">
+          </p>
+          <p>
+            <label for="answer1">${questions.answers[1]}</label>
+            <input type="radio" name="answers" id="answer1" value="${questions.answers[1]}"><br>
+          </p>
+          <p>
+            <label for="answer2">${questions.answers[2]}</label>
+            <input type="radio" name="answers" id="answer2" value="${questions.answers[2]}"><br>
+          </p>
+          <p>
+            <label for="answer3">${questions.answers[3]}</label>
+            <input type="radio" name="answers" id="answer3" value="${questions.answers[3]}"><br>
+          </p>
+          <p>
+            <button id="btn-submit" type="submit">Submit</button>
+            <button id="btn-next">Next</button>
+            <button id="btn-finish">Finish</button>
+          </p>
         </form>
       </div>
     </div>`;
@@ -104,12 +115,27 @@ const renderQuestionPage = () => {
   render(html);
   $("#btn-next, #btn-finish").hide();
   $("#js-quiz-question-anwser-form").submit((event) => {
-    event.preventDefault();
+    // - [x] Checking if the answer is correct
+    // - [x] Hiding the Submit button
+    // - [ ] Showing the Next button (if not on last question)
+    // - [ ] Showing the Finish button (if on last question)
 
-    // - Checking if the answer is correct
-    // - Hiding the Submit button
-    // - Showing the Next button (if not on last question)
-    // - Showing the Finish button (if on last question)
+    event.preventDefault();
+    const userAnswer = $("input[type=radio]:checked").val();
+    const correctAnswer = store.questions[0].correctAnswer;
+    $("#btn-submit").hide();
+    $("#btn-next").show();
+
+    if (userAnswer === correctAnswer) {
+      // - [ ] Display a success message
+      // - [ ] Update the user score (+20)
+      alert("Correct answer!");
+    } else {
+      // - [ ] Display wrong message with correct answer
+      alert("Wrong answer");
+    }
+    // - We need an if statement to compare the correct answer in the object
+    //   to the user's input
 
     console.log("Form has been submitted!");
   });
