@@ -130,7 +130,7 @@ const renderQuestionPage = () => {
       // - [ ] Display a success message
       // - [ ] Update the user score (+20)
       alert("Correct answer!");
-      score.store = store.score + 20;
+      score.store += 20;
     } else {
       // - [ ] Display wrong message with correct answer
       alert("Wrong answer");
