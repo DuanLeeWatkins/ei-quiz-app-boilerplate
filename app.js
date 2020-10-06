@@ -83,7 +83,7 @@ const renderQuestionPage = () => {
 
   html = `
     <div class="container">
-      <p id="score">Score:0</p>
+      <p id="score">Score:${store.score}</p>
       <p>${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
