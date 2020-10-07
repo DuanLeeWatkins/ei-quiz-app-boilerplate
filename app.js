@@ -75,15 +75,18 @@ const renderMainPage = () => {
   render(html);
   $("main").on("click", "#start-btn", (event) => {
     renderQuestionPage();
+    $("#btn-next, #btn-finish").hide();
   });
 };
 
+function startQuiz() {
+  jQuery("#btn-next").addClass("hide");
+}
+
 const renderQuestionPage = () => {
   let questions = store.questions[store.questionNumber];
-
   html = `
     <div class="container">
-      
       <p>${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
@@ -111,48 +114,46 @@ const renderQuestionPage = () => {
         </form>
       </div>
     </div>`;
-
   render(html);
-  $("#btn-next, #btn-finish").hide();
-  $("#js-quiz-question-anwser-form").submit((event) => {
+  questions.question++;
+};
+
+function handleSubmit() {
+  // $("#btn-next, #btn-finish").hide();
+  $("main").on("submit", "#js-quiz-question-anwser-form", (event) => {
     // - [x] Checking if the answer is correct
     // - [x] Hiding the Submit button
     // - [ ] Showing the Next button (if not on last question)
     // - [ ] Showing the Finish button (if on last question)
-
     event.preventDefault();
-    const userAnswer = $("input[type=radio]:checked").val();
-    const correctAnswer = store.questions[0].correctAnswer;
-    $("#btn-submit").hide();
-    $("#btn-next").show();
-
-    if (userAnswer === correctAnswer) {
-      store.score += 20;
-      // - [X] Display a success message
-      // - [X] Update the user score (+20)
-
-      return $("main").html(
-        `<h2>Correct</h2> <p>Score: ${store.score}</p><button id="btn-next">Next</button>`
-      );
-    } else {
-      // - [ ] Display wrong message with correct answer
-      alert("Wrong answer");
-      return $("main").html(
-        `<h2>Wrong Answer</h2> <p> The correct answer is ${correctAnswer}</p><button id="btn-next">Next</button>`
-      );
-    }
-    // - We need an if statement to compare the correct answer in the object
-    //   to the user's input
+    checkAnswer();
   });
-};
-
-const renderResultsPage = () => {};
-
-function startQuiz() {
-  jQuery("#btn-next").addClass("hide");
 }
 
-function handleQuestionNumber() {}
+function checkAnswer() {
+  const userAnswer = $("input[type=radio]:checked").val();
+  const correctAnswer = store.questions[0].correctAnswer;
+  // $("#btn-submit").hide();
+  // $("#btn-next").show();
+  let html;
+  if (userAnswer === correctAnswer) {
+    store.score += 20;
+    // - [X] Display a success message
+    // - [X] Update the user score (+20)
+    // return $("main").html(
+    html = `<h2>Correct</h2> <p>Score: ${store.score}</p><button id="btn-next">Next</button>`;
+    // );
+  } else {
+    // - [ ] Display wrong message with correct answer
+    // alert("Wrong answer");
+    // return $("main").html(
+    html = `<h2>Wrong Answer</h2> <p> The correct answer is ${correctAnswer}</p><button id="btn-next">Next</button>`;
+    // );
+  }
+  render(html);
+  // - We need an if statement to compare the correct answer in the object
+  //   to the user's input
+}
 
 /**
  *
@@ -180,4 +181,4 @@ function handleQuestionNumber() {}
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(renderMainPage, renderQuestionPage);
+$(renderMainPage(), handleSubmit(), nextQuestion());
