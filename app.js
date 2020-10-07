@@ -83,7 +83,7 @@ const renderQuestionPage = () => {
 
   html = `
     <div class="container">
-      <p id="score">Score:${store.score}</p>
+      
       <p>${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
@@ -127,19 +127,26 @@ const renderQuestionPage = () => {
     $("#btn-next").show();
 
     if (userAnswer === correctAnswer) {
-      // - [ ] Display a success message
-      // - [ ] Update the user score (+20)
-      alert("Correct answer!");
+      store.score += 20;
+      // - [X] Display a success message
+      // - [X] Update the user score (+20)
+
+      return $("main").html(
+        `<h2>Correct</h2> <p>Score: ${store.score}</p><button id="btn-next">Next</button>`
+      );
     } else {
       // - [ ] Display wrong message with correct answer
       alert("Wrong answer");
+      return $("main").html(
+        `<h2>Wrong Answer</h2> <p> The correct answer is ${correctAnswer}</p><button id="btn-next">Next</button>`
+      );
     }
     // - We need an if statement to compare the correct answer in the object
     //   to the user's input
-
-    store.score += 20;
   });
 };
+
+const renderResultsPage = () => {};
 
 function startQuiz() {
   jQuery("#btn-next").addClass("hide");
