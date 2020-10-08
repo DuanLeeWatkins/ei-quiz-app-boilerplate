@@ -115,7 +115,6 @@ const renderQuestionPage = () => {
       </div>
     </div>`;
   render(html);
-  questions.question++;
 };
 
 function handleSubmit() {
@@ -129,6 +128,8 @@ function handleSubmit() {
     checkAnswer();
   });
 }
+
+function handleNext() {}
 
 function checkAnswer() {
   const userAnswer = $("input[type=radio]:checked").val();
@@ -181,4 +182,4 @@ function checkAnswer() {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-$(renderMainPage(), handleSubmit(), nextQuestion());
+$(renderMainPage(), handleSubmit(), handleNext());
