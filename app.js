@@ -92,30 +92,48 @@ const renderQuestionPage = () => {
         <form id="js-quiz-question-anwser-form">
           <p>
             <label for="answer0">${questions.answers[0]}</label>
-            <input type="radio" name="answers" id="answer0" value="${questions.answers[0]}">
+            <input type="radio" name="answers" id="answer0" value="${
+              questions.answers[0]
+            }">
           </p>
           <p>
             <label for="answer1">${questions.answers[1]}</label>
-            <input type="radio" name="answers" id="answer1" value="${questions.answers[1]}"><br>
+            <input type="radio" name="answers" id="answer1" value="${
+              questions.answers[1]
+            }"><br>
           </p>
           <p>
             <label for="answer2">${questions.answers[2]}</label>
-            <input type="radio" name="answers" id="answer2" value="${questions.answers[2]}"><br>
+            <input type="radio" name="answers" id="answer2" value="${
+              questions.answers[2]
+            }"><br>
           </p>
           <p>
             <label for="answer3">${questions.answers[3]}</label>
-            <input type="radio" name="answers" id="answer3" value="${questions.answers[3]}"><br>
+            <input type="radio" name="answers" id="answer3" value="${
+              questions.answers[3]
+            }"><br>
           </p>
           <p>
-            <button id="btn-submit" type="submit">Submit</button>
-            <button id="btn-next">Next</button>
-            <button id="btn-finish">Finish</button>
+            ${renderButtons()}
           </p>
         </form>
       </div>
     </div>`;
   render(html);
 };
+
+function renderButtons() {
+  if (store.questionNumber === store.questions.length - 1) {
+    return '<button id="btn-finish">Finish</button>';
+  }
+  return '<button id="btn-submit type="submit">Submit</button>';
+}
+
+function renderSubmitButton = () => {
+  
+
+}
 
 function handleSubmit() {
   // $("#btn-next, #btn-finish").hide();
@@ -129,7 +147,12 @@ function handleSubmit() {
   });
 }
 
-function handleNext() {}
+function handleNext() {
+  $("main").on("click", "#btn-next", () => {
+    store.questionNumber++;
+    renderQuestionPage();
+  });
+}
 
 function checkAnswer() {
   const userAnswer = $("input[type=radio]:checked").val();
