@@ -127,12 +127,7 @@ function renderButtons() {
   if (store.questionNumber === store.questions.length - 1) {
     return '<button id="btn-finish">Finish</button>';
   }
-  return '<button id="btn-submit type="submit">Submit</button>';
-}
-
-function renderSubmitButton = () => {
-  
-
+  return '<button id="btn-submit" type="submit">Submit</button>';
 }
 
 function handleSubmit() {
@@ -157,8 +152,7 @@ function handleNext() {
 function checkAnswer() {
   const userAnswer = $("input[type=radio]:checked").val();
   const correctAnswer = store.questions[0].correctAnswer;
-  // $("#btn-submit").hide();
-  // $("#btn-next").show();
+
   let html;
   if (userAnswer === correctAnswer) {
     store.score += 20;
@@ -177,6 +171,12 @@ function checkAnswer() {
   render(html);
   // - We need an if statement to compare the correct answer in the object
   //   to the user's input
+}
+
+function renderFinalPage() {
+  return $("main").html(
+    `<h2>You have completed the quiz</h2><h3>${store.score}/100 <button type="button" id='tryAgain'>Try Again</button>`
+  );
 }
 
 /**
