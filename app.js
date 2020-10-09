@@ -75,18 +75,16 @@ const renderMainPage = () => {
   render(html);
   $("main").on("click", "#start-btn", (event) => {
     renderQuestionPage();
-    $("#btn-next, #btn-finish").hide();
+    //$("#btn-next, #btn-finish").hide();
+    store.quizStarted = true;
   });
 };
-
-function startQuiz() {
-  jQuery("#btn-next").addClass("hide");
-}
 
 const renderQuestionPage = () => {
   let questions = store.questions[store.questionNumber];
   html = `
     <div class="container">
+      <h3>Question ${store.questionNumber + 1}/5</h3>
       <p>${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
@@ -145,13 +143,17 @@ function handleSubmit() {
 function handleNext() {
   $("main").on("click", "#btn-next", () => {
     store.questionNumber++;
-    renderQuestionPage();
+    if (store.questionNumber < store.questions.length) {
+      renderQuestionPage();
+    } else {
+      renderFinalPage();
+    }
   });
 }
 
 function checkAnswer() {
   const userAnswer = $("input[type=radio]:checked").val();
-  const correctAnswer = store.questions[0].correctAnswer;
+  const correctAnswer = store.questions[store.questionNumber].correctAnswer;
 
   let html;
   if (userAnswer === correctAnswer) {
@@ -159,13 +161,21 @@ function checkAnswer() {
     // - [X] Display a success message
     // - [X] Update the user score (+20)
     // return $("main").html(
-    html = `<h2>Correct</h2> <p>Score: ${store.score}</p><button id="btn-next">Next</button>`;
+    html = `
+      <h2>Correct</h2>
+      <p>Score: ${store.score}</p>
+      <button id="btn-next">Next</button>
+    `;
     // );
   } else {
     // - [ ] Display wrong message with correct answer
     // alert("Wrong answer");
     // return $("main").html(
-    html = `<h2>Wrong Answer</h2> <p> The correct answer is ${correctAnswer}</p><button id="btn-next">Next</button>`;
+    html = `
+      <h2>Wrong Answer</h2>
+      <p>The correct answer is ${correctAnswer}</p>
+      <button id="btn-next">Next</button>
+    `;
     // );
   }
   render(html);
@@ -174,9 +184,13 @@ function checkAnswer() {
 }
 
 function renderFinalPage() {
-  return $("main").html(
-    `<h2>You have completed the quiz</h2><h3>${store.score}/100 <button type="button" id='tryAgain'>Try Again</button>`
+  $("main").html(
+    `<h2>You have completed the quiz</h2>
+    <h3>${store.score}/100 <button type="button" id='tryAgain'>Try Again</button>`
   );
+  $("#tryAgain").on("click", function () {
+    renderMainPage();
+  });
 }
 
 /**
