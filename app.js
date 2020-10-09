@@ -2,6 +2,7 @@
  * Example store structure
  */
 
+let counter = 0;
 const store = {
   // 5 or more questions are required
   questions: [
@@ -46,11 +47,11 @@ const store = {
   questionNumber: 0,
   score: 0,
 };
-
+// - Replaces the main tag with whatever it stores.
 function render(html) {
   $("main").html(html);
 }
-
+// - Displays the main page of the quiz.
 const renderMainPage = () => {
   html = `
     <div class="container">
@@ -81,10 +82,11 @@ const renderMainPage = () => {
     store.quizStarted = true;
   });
 };
-
+// - Displays the question page.
 const renderQuestionPage = () => {
-  let currentQuestion = store.questions[store.questionNumber];
-  html = `
+  if (counter < 5) {
+    let currentQuestion = store.questions[store.questionNumber];
+    html = `
     <div class="container">
       <h3>Question ${store.questionNumber + 1}/5</h3>
       <p class="question">${currentQuestion.question}</p>
@@ -121,28 +123,26 @@ const renderQuestionPage = () => {
         </form>
       </div>
     </div>`;
+  }
   render(html);
 };
-
+// - Displays the finish and submit buttons based on what questionNumber
+// is loaded.
 function renderButtons() {
   if (store.questionNumber === store.questions.length - 1) {
     return '<button id="btn-finish">Finish</button>';
   }
   return '<button id="btn-submit" type="submit">Submit</button>';
 }
-
+// - Handles the submit button.
 function handleSubmit() {
   // $("#btn-next, #btn-finish").hide();
   $("main").on("submit", "#js-quiz-question-anwser-form", (event) => {
-    // - [x] Checking if the answer is correct
-    // - [x] Hiding the Submit button
-    // - [ ] Showing the Next button (if not on last question)
-    // - [ ] Showing the Finish button (if on last question)
     event.preventDefault();
     checkAnswer();
   });
 }
-
+// - Handles next button
 function handleNext() {
   $("main").on("click", "#btn-next", () => {
     store.questionNumber++;
@@ -153,7 +153,7 @@ function handleNext() {
     }
   });
 }
-
+// - Checks if the users' answer is correct
 function checkAnswer() {
   const userAnswer = $("input[type=radio]:checked").val();
   const correctAnswer = store.questions[store.questionNumber].correctAnswer;
@@ -185,14 +185,15 @@ function checkAnswer() {
   // - We need an if statement to compare the correct answer in the object
   //   to the user's input
 }
-
+// - Displays the final page and tryAgain button
+// - Reloads back to the mainPage
 function renderFinalPage() {
   $("main").html(
     `<h2>You have completed the quiz</h2>
     <h3>${store.score}/100 <button type="button" id='tryAgain'>Try Again</button>`
   );
   $("#tryAgain").on("click", function () {
-    renderMainPage();
+    document.location.reload();
   });
 }
 
