@@ -83,36 +83,37 @@ const renderMainPage = () => {
 };
 
 const renderQuestionPage = () => {
-  let questions = store.questions[store.questionNumber];
+  let currentQuestion = store.questions[store.questionNumber];
   html = `
     <div class="container">
       <h3>Question ${store.questionNumber + 1}/5</h3>
-      <p class="question">${questions.question}</p>
+      <p class="question">${currentQuestion.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
           <p>
-            <label for="answer0">${questions.answers[0]}</label>
             <input type="radio" name="answers" id="answer0" value="${
-              questions.answers[0]
-            }">
+              currentQuestion.answers[0]
+            }" required>
+            <label for="answer0">${currentQuestion.answers[0]}</label>
+            
           </p>
           <p>
-            <label for="answer1">${questions.answers[1]}</label>
             <input type="radio" name="answers" id="answer1" value="${
-              questions.answers[1]
-            }"><br>
+              currentQuestion.answers[1]
+            }"><label for="answer2">${currentQuestion.answers[2]}</label>
+            <label for="answer1">${currentQuestion.answers[1]}</label>
           </p>
           <p>
-            <label for="answer2">${questions.answers[2]}</label>
             <input type="radio" name="answers" id="answer2" value="${
-              questions.answers[2]
-            }"><br>
+              currentQuestion.answers[2]
+            }">
+            <label for="answer2">${currentQuestion.answers[2]}</label>
           </p>
           <p>
-            <label for="answer3">${questions.answers[3]}</label>
             <input type="radio" name="answers" id="answer3" value="${
-              questions.answers[3]
-            }"><br>
+              currentQuestion.answers[3]
+            }">
+            <label for="answer3">${currentQuestion.answers[3]}</label>
           </p>
           <p>
             ${renderButtons()}
@@ -165,7 +166,7 @@ function checkAnswer() {
     // return $("main").html(
     html = `
       <h2>Correct</h2>
-      <p>Score: ${store.score}</p>
+      <p id="score-text">Score: ${store.score}</p>
       <button id="btn-next">Next</button>
     `;
     // );
@@ -175,7 +176,7 @@ function checkAnswer() {
     // return $("main").html(
     html = `
       <h2>Wrong Answer</h2>
-      <p>The correct answer is ${correctAnswer}</p>
+      <p id="wrong-answer-message">The correct answer is ${correctAnswer}</p>
       <button id="btn-next">Next</button>
     `;
     // );

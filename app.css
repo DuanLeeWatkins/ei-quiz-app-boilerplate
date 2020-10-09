@@ -57,11 +57,17 @@ h3 {
   font-size: 25px;
 }
 
-#js-quiz-question-anwser-form {
+label {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
 
-.start-btn {
+#score-text {
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+#wrong-answer-message {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
 }
