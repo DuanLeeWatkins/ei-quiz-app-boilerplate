@@ -55,15 +55,17 @@ const renderMainPage = () => {
   html = `
     <div class="container">
       <div id="main-page-container">
-        <p>
-          Welcome to the Millennial Quiz! This quiz was created to test how
-          Millennial you are. There are five mulitple choice question to
-          answer. Each question is worth 20 points.
-        </p>
-        <p>
-          If you are up to the challenge, click on the start quiz button to
-          begin.
+        <div class="main-page-paragraph"
+          <p>
+            Welcome to the Millennial Quiz! This quiz was created to test how
+            Millennial you are. There are five mulitple choice question to
+            answer. Each question is worth 20 points.
           </p>
+          <p>
+            If you are up to the challenge, click on the start quiz button to
+            begin.
+          </p>
+        </div>
         <div class="controls">
           <button id="start-btn" class="start-btn btn">Start Quiz</button>
         </div>
@@ -85,7 +87,7 @@ const renderQuestionPage = () => {
   html = `
     <div class="container">
       <h3>Question ${store.questionNumber + 1}/5</h3>
-      <p>${questions.question}</p>
+      <p class="question">${questions.question}</p>
       <div class="question-answers-container">
         <form id="js-quiz-question-anwser-form">
           <p>
