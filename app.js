@@ -177,6 +177,7 @@ function checkAnswer() {
     html = `
       <h2>Wrong Answer</h2>
       <p id="wrong-answer-message">The correct answer is ${correctAnswer}</p>
+      <p id="current-score">Current Score is ${store.score}</p>
       <button id="btn-next">Next</button>
     `;
     // );
